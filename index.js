@@ -1,4 +1,5 @@
 setInterval(() => {
+    getDate()
     let hours = document.getElementById('hours')
     let minutes = document.getElementById('minutes')
     let seconds = document.getElementById('seconds')
@@ -23,19 +24,34 @@ setInterval(() => {
     h = (h < 10) ? "0" + h : h;
     m = (m < 10) ? "0" + m : m;
     s = (s < 10) ? "0" + s : s;
-    hours.innerHTML = h+"<br><span>Hours</span>";
-    minutes.innerHTML = m+"<br><span>Minutes</span";
-    seconds.innerHTML = s+"<br><span>Second</span";
+    hours.innerHTML = h + "<br><span>Hours</span>";
+    minutes.innerHTML = m + "<br><span>Minutes</span";
+    seconds.innerHTML = s + "<br><span>Second</span";
     ampm.innerHTML = am;
 
-    hh.style.strokeDashoffset = 440 - (440* h)/12;
-    mm.style.strokeDashoffset = 440 - (440* m)/60;
-    ss.style.strokeDashoffset = 440 - (440* s)/60;
+    hh.style.strokeDashoffset = 440 - (440 * h) / 12;
+    mm.style.strokeDashoffset = 440 - (440 * m) / 60;
+    ss.style.strokeDashoffset = 440 - (440 * s) / 60;
 
-    hr_dot.style.transform = `rotate(${h*30}deg)`
-    min_dot.style.transform = `rotate(${m*6}deg)`
-    sec_dot.style.transform = `rotate(${s*6}deg)`
+    hr_dot.style.transform = `rotate(${h * 30}deg)`
+    min_dot.style.transform = `rotate(${m * 6}deg)`
+    sec_dot.style.transform = `rotate(${s * 6}deg)`
 
 })
 
-
+const getDate = () => {
+    let date = document.getElementById('date')
+    let day = document.getElementById('date-day')
+    const DateOptions = {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    };
+    let DayOptions = {
+        weekday: "long"
+    };
+    let currentDate = new Date().toLocaleString("en-GB", DateOptions)
+    let currentDay = new Date().toLocaleString("en-US", DayOptions)
+    date.innerText = `${currentDate}`
+    day.innerText = `${currentDay}`
+}
